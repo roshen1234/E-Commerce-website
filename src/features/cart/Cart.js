@@ -8,7 +8,7 @@ import {
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import {  useNavigate } from 'react-router-dom';
+import {  Link, useNavigate } from 'react-router-dom';
 
 const products = [
   {
@@ -106,12 +106,11 @@ const Cart = () => {
       </div>
       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
       <div className="mt-6">
-        <a
-          href="#"
+        <Link to={"/checkout"}
           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 tefont-medium text-white shadow-sm hover:bg-indigo-700"
         >
           Checkout
-        </a>
+        </Link>
       </div>
       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
         <p>
