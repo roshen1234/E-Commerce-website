@@ -1,0 +1,9 @@
+first we have use npx create-react-app <name> to create a react app
+
+then to get redux tookit template we have to type npx degit reduxjs/redux-templates/packages/cra-template-redux react-app in a new terminal by opening a new vs code 
+
+then from that copy the full content inside template/src and paste it inside our src in the react app then  we get the redux tempelate 
+
+first we are setting up frontend first then only backend so to test frontend we use a site dummy.json where we get a lot of data in json format we have to create data.json file in react app and paste the json code there 
+
+then we have to install npm i -g json-server this will check the content in the data.json that we have created and gives us a port so that we can test our frontend we have to enter the code  json-server --watch ./src/data.json --port 8080 
