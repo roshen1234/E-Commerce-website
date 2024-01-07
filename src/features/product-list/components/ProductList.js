@@ -220,23 +220,41 @@ const ProductList = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectAllProducts)
   const [filter,setFilter]=useState({})
+  const [sort,setSort]=useState({})
 const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const handleFilter=(section,option)=>{
-    const newFilter={...filter,[section.id]:option.value}
+  
+const handleFilter=(e,section,option)=>{
+  console.log(e.target.checked)
+  const newFilter={...filter}
+  // TODO:on server it wil accept multiple catagories
+  if(e.target.checked){
+    if(newFilter[section.id]){
+
+      newFilter[section.id].push(option.value)
+    }
+    else{
+      newFilter[section.id]=[option.value]
+    }
+  }
+  else{
+     const index=newFilter[section.id].findIndex(el=>el===option.value)
+     newFilter[section.id].splice(index,1)
+  }
+  console.log(newFilter)
     setFilter(newFilter)
-    dispatch(fetchProductsByFilterAsync(newFilter))
-    console.log(section.id,option.value)
+    
   }
  
   const handleSort=(option)=>{
-    const newFilter={...filter,_sort:option.sort,_order:option.order}
-    setFilter(newFilter)
-    dispatch(fetchProductsByFilterAsync(newFilter))
+    const sort={_sort:option.sort,_order:option.order}
+    console.log({sort})
+    setSort(sort)
+   
   }
 
   useEffect(()=>{
-    dispatch(fetchAllProductsAsync())
-    },[dispatch])
+    dispatch(fetchProductsByFilterAsync({filter,sort}))
+    },[dispatch,filter,sort])
   return (
    <div>
 <div className="bg-white">
@@ -535,7 +553,7 @@ function DesktopFilter({handleFilter}){
                                   defaultValue={option.value}
                                   type="checkbox"
                                   defaultChecked={option.checked}
-                                  onChange={()=>{handleFilter(section,option)}}
+                                  onChange={(e)=>{handleFilter(e,section,option)}}
                                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                 />
                                 <label
