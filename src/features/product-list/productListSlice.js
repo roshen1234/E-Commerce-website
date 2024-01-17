@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchAllProducts,fetchProductsByFilters } from './productListAPI';
+import { fetchAllProducts,fetchProductsByFilters,fetchBrands,fetchCategories } from './productListAPI';
 
 
 
@@ -19,15 +19,34 @@ export const fetchProductsByFilterAsync = createAsyncThunk(
   }
 );
 
+export const fetchBrandsAsync = createAsyncThunk(
+  'product/fetchBrands',
+  async () => {
+    const response = await fetchBrands();
+    return response.data;
+  }
+);
+
+export const fetchCategoriesAsync = createAsyncThunk(
+  'product/fetchCategories',
+  async () => {
+    const response = await fetchCategories();
+    return response.data;
+  }
+);
+
 const initialState = {
   products:[],
   status: 'idle',
-  totalItems:0
+  totalItems:0,
+  brands:[],
+  categories:[]
 };
 
 export const productListSlice = createSlice({
   name: 'product',
   initialState,
+  
   reducers: {
     increment: (state) => {
       state.value += 1;
@@ -49,6 +68,21 @@ export const productListSlice = createSlice({
         state.status = 'idle';
         state.products = action.payload.products;
         state.totalItems = action.payload.totalItems;
+      })
+      .addCase(fetchBrandsAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchBrandsAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.brands = action.payload;
+      })
+      .addCase(fetchCategoriesAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchCategoriesAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.categories = action.payload;
+       
       });
   },
 });
@@ -58,5 +92,7 @@ export const { increment} = productListSlice.actions;
 
 export const selectAllProducts = (state) => state.product.products;
 export const selecttotalItems = (state) => state.product.totalItems;
+export const selectBrands = (state) => state.product.brands;
+export const selectCategories = (state) => state.product.categories;
 
 export default productListSlice.reducer;
