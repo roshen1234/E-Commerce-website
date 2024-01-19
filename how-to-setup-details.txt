@@ -7,3 +7,15 @@ then from that copy the full content inside template/src and paste it inside our
 first we are setting up frontend first then only backend so to test frontend we use a site dummy.json where we get a lot of data in json format we have to create data.json file in react app and paste the json code there 
 
 then we have to install npm i -g json-server this will check the content in the data.json(for each item present in the data.json it makes a api ) that we have created and gives us a port so that we can test our frontend we have to enter the code  json-server --watch ./src/data.json --port 8080 
+
+then we have to go to react form hook website  use react form hook by useHook() an we have to download as "npm install react-hook-form"  this basically is for when we create a user we enter the username password and confirm password and we sent this to the api to put it in the DB so for that we can put this all data in a form by just using this and this form content is send to backend ie to api so basically we can easily covert the data entered by the user into form
+
+then if we want to validate the contents that we enter as email or password etc like email  should be of type email@mail.com like that then we have validator option in use hook we can click that or go to regexer where we will  get all type validators for email passwords etc to use it we have to give it as 
+{ pattern: /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/gi }
+but if we want some king of messagew then 
+pattern:{
+                    value:/\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/gi,
+                    message:"email is not valid"
+                  }
+
+to check whether the confirm password  we entered is same as  password in use hook website go to api then usehook() then register then scroll down we can see validate where this code is presnent validate: (value, formValues) => value === '1' here change 1 to      validate: (value, formValues) => value === formValues.password || "Password not matching"    where value is confirm password and formValues is with with value you want to compare it with that is here password  and the sentence after this symbol || is if it is not matching        
