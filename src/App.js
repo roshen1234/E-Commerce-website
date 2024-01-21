@@ -4,7 +4,7 @@ import './App.css';
 import Homes from './pages/Homes';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
-
+import PageNotFound from './pages/404';
 import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
@@ -21,6 +21,7 @@ import {useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchItemsByUserIdAsync } from './features/cart/cartSlice';
 import { selectLoggedInUser } from './features/auth/authSlice';
+import OrderSuccessPage from './pages/orderSuccessPage';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,14 @@ const router = createBrowserRouter([
   {
     path: "/product-detail/:id",
     element:(<Protected><ProductDetailPage/></Protected>),
+  },
+  {
+    path: "order-success/:id",
+    element:(<OrderSuccessPage></OrderSuccessPage>),
+  },
+  {
+    path: "*",
+    element:(<PageNotFound></PageNotFound>),
   },
   
 ]);

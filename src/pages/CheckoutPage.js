@@ -11,11 +11,12 @@ import {
 import { Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { selectLoggedInUser, updateUserAsync } from "../features/auth/authSlice";
-import { createOrderAsync } from "../features/order/orderSlice";
+import { createOrderAsync,selectCurrentOrder } from "../features/order/orderSlice";
 
 
 const CheckoutPage = () => {
   const user=useSelector(selectLoggedInUser)
+  const currentOrder=useSelector(selectCurrentOrder)
   const {register,handleSubmit,reset,formState: { errors }} = useForm();
   console.log(errors); 
 
@@ -32,7 +33,7 @@ const CheckoutPage = () => {
   }
 
   const handleOrder=()=>{
-    const order={items,totalAmount,totalItems,user,paymentMethod,selectedAddress}
+    const order={items,totalAmount,totalItems,user,paymentMethod,selectedAddress,status:"pending"}
     dispatch(createOrderAsync(order))
   }
   const navigate = useNavigate();
@@ -52,6 +53,7 @@ const CheckoutPage = () => {
   return (
     <>
     {!items.length &&<Navigate to={'/'} replace={true}></Navigate>}
+    {currentOrder &&<Navigate to={`/order-success/${currentOrder.id}`} replace={true}></Navigate>}
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
         <div className="lg:col-span-3">
