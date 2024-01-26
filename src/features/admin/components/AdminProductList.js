@@ -9,7 +9,7 @@ import {
   selectCategories,
   fetchBrandsAsync,
   fetchCategoriesAsync
-} from '../productListSlice';
+} from '../../product-list/productListSlice';
 
 import { ITEMS_PER_PAGE } from '../../../app/constants';
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
@@ -34,7 +34,7 @@ function classNames(...classes) {
 
 
 
-const ProductList = () => {
+const AdminProductList = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectAllProducts)
   const totalItems = useSelector(selecttotalItems)
@@ -193,7 +193,11 @@ const handleFilter=(e,section,option)=>{
 
               {/* Product grid */}
               <div className="lg:col-span-3">
-                
+              <div>
+                <Link to={"/admin/product-form"}>
+            <button className="rounded-md mx-10 bg-green-600 px-3 py-3 my-3 text-sm font-semibold text-white">Add New Product</button>
+            </Link>
+            </div>
                  <ProductGrid products={products}/>
 
               </div>
@@ -220,7 +224,7 @@ const handleFilter=(e,section,option)=>{
   )
 }
 
-export default ProductList
+export default AdminProductList
 
 function MobileFilter(props){
   const {mobileFiltersOpen,setMobileFiltersOpen,handleFilter,filters} = props
@@ -438,6 +442,7 @@ function ProductGrid({products}){
 
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
           {products.map((product) => (
+            <div>
             <Link to={`/product-detail/${product.id}`} key={product.id}>
             <div key={product.id} className="group relative border-solid border-2 border-gar-200 p-2">
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">
@@ -470,6 +475,13 @@ function ProductGrid({products}){
               </div>}
             </div>
             </Link>
+            <div>
+            <Link to={`/admin/product-form/edit/${product.id}`}>
+            <button className="rounded-md bg-indigo-600 px-3 py-3 my-3 text-sm font-semibold text-white">Edit Product</button> 
+             </Link>
+             
+            </div>
+            </div>
           ))}
         </div>
       </div>

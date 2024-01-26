@@ -46,7 +46,7 @@ const UserProfile = () => {
 <div className=" border-t border-gray-200 px-4 py-6 sm:px-6">
 <h1 className="text-4xl font-bold tracking-tight text-gray-900 my-4">Name: {user.name?user.name:"New-User"}</h1>
 <h3 className="text-xl font-bold tracking-tight text-red-900 my-4">Email Address: {user.email}</h3>
-
+{user.role==="admin" && (<h3 className="text-xl font-bold tracking-tight text-red-900 my-4">Role: {user.role}</h3>)}
 </div>
                  
 

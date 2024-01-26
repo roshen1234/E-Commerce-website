@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchAllProducts,fetchProductsByFilters,fetchBrands,fetchCategories,fetchProductId } from './productListAPI';
+import { fetchAllProducts,fetchProductsByFilters,fetchBrands,fetchCategories,fetchProductId,createProduct,updateProduct } from './productListAPI';
 
 
 
@@ -43,6 +43,23 @@ export const fetchProductByIdAsync = createAsyncThunk(
   }
 );
 
+export const createProductAsync = createAsyncThunk(
+  'product/createProduct',
+  async (product) => {
+    const response = await createProduct(product);
+    return response.data;
+  }
+);
+
+export const updateProductAsync = createAsyncThunk(
+  'product/updateProduct',
+  async (product) => {
+    const response = await updateProduct(product);
+    return response.data;
+  }
+);
+
+
 const initialState = {
   products:[],
   status: 'idle',
@@ -57,8 +74,8 @@ export const productListSlice = createSlice({
   initialState,
   
   reducers: {
-    increment: (state) => {
-      state.value += 1;
+    clearSelectedProduct: (state) => {
+      state.selectedProduct=null;
     },
   },
   extraReducers: (builder) => {
@@ -100,11 +117,28 @@ export const productListSlice = createSlice({
         state.status = 'idle';
         state.selectedProduct = action.payload;
        
+      })
+      .addCase(createProductAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(createProductAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.products.push(action.payload);
+       
+      })
+      .addCase(updateProductAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(updateProductAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        const index=state.products.findIndex((product)=>product.id===action.payload.id)
+        state.products[index]=action.payload;
+       
       });
   },
 });
 
-export const { increment} = productListSlice.actions;
+export const { clearSelectedProduct} = productListSlice.actions;
 
 
 export const selectAllProducts = (state) => state.product.products;
