@@ -2470,7 +2470,7 @@
         "state": "kerala",
         "pinCode": "691501"
       },
-      "status": "pending",
+      "status": "dispatched",
       "id": 1
     },
     {
@@ -2525,7 +2525,7 @@
         "state": "kerala",
         "pinCode": "691501"
       },
-      "status": "pending",
+      "status": "delivered",
       "id": 2
     },
     {
@@ -2580,8 +2580,170 @@
         "state": "kerala",
         "pinCode": "691501"
       },
-      "status": "pending",
+      "status": "cancelled",
       "id": 3
+    },
+    {
+      "items": [
+        {
+          "title": "Infinix INBOOK",
+          "description": "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
+          "price": 1500,
+          "discountPercentage": "10",
+          "rating": 3,
+          "stock": 96,
+          "brand": "Infinix",
+          "category": "laptops",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/9/1.jpg",
+            "https://cdn.dummyjson.com/product-images/9/2.png",
+            "https://cdn.dummyjson.com/product-images/9/3.png",
+            "https://cdn.dummyjson.com/product-images/9/4.jpg",
+            "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg"
+          ],
+          "quantity": 2,
+          "user": 1,
+          "id": 1
+        }
+      ],
+      "totalAmount": 2700,
+      "totalItems": 2,
+      "user": {
+        "email": "roshankoshy123@gmail.com",
+        "password": "Rosh123@",
+        "id": 1,
+        "role": "user",
+        "addresses": [
+          {
+            "name": "Roshen Koshy",
+            "email": "roshankoshy123@gmail.com",
+            "street": "aarumurikada",
+            "city": "kollam",
+            "pinCode": "691501",
+            "state": "kerala",
+            "phone": "7559044773"
+          },
+          {
+            "name": "reshma Koshy",
+            "email": "reshmakoshy1961@gmail.com",
+            "phone": "54511511515",
+            "street": "edayilla veedu,",
+            "city": "kollam",
+            "state": "kerala",
+            "pinCode": "691501"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Roshen Koshy",
+        "email": "roshankoshy123@gmail.com",
+        "street": "aarumurikada",
+        "city": "kollam",
+        "pinCode": "691501",
+        "state": "kerala",
+        "phone": "7559044773"
+      },
+      "status": "pending",
+      "id": 4
+    },
+    {
+      "items": [
+        {
+          "title": "Eau De Perfume Spray",
+          "description": "Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality",
+          "price": 30,
+          "discountPercentage": 10.99,
+          "rating": 4.7,
+          "stock": 105,
+          "brand": "Lord - Al-Rehab",
+          "category": "fragrances",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/15/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/15/1.jpg",
+            "https://cdn.dummyjson.com/product-images/15/2.jpg",
+            "https://cdn.dummyjson.com/product-images/15/3.jpg",
+            "https://cdn.dummyjson.com/product-images/15/4.jpg",
+            "https://cdn.dummyjson.com/product-images/15/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 2,
+          "id": 1
+        },
+        {
+          "title": "ank Tops for Womens/Girls",
+          "description": "PACK OF 3 CAMISOLES ,VERY COMFORTABLE SOFT COTTON STUFF, COMFORTABLE IN ALL FOUR SEASONS",
+          "price": 50,
+          "discountPercentage": 12.05,
+          "rating": 4.52,
+          "stock": 107,
+          "brand": "Soft Cotton",
+          "category": "tops",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/37/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/37/1.jpg",
+            "https://cdn.dummyjson.com/product-images/37/2.jpg",
+            "https://cdn.dummyjson.com/product-images/37/3.jpg",
+            "https://cdn.dummyjson.com/product-images/37/4.jpg",
+            "https://cdn.dummyjson.com/product-images/37/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 2,
+          "id": 2
+        },
+        {
+          "title": "Samsung Galaxy Book",
+          "description": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
+          "price": 1499,
+          "discountPercentage": 4.15,
+          "rating": 4.25,
+          "stock": 50,
+          "brand": "Samsung",
+          "category": "laptops",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/7/1.jpg",
+            "https://cdn.dummyjson.com/product-images/7/2.jpg",
+            "https://cdn.dummyjson.com/product-images/7/3.jpg",
+            "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 2,
+          "id": 3
+        }
+      ],
+      "totalAmount": 1508,
+      "totalItems": 3,
+      "user": {
+        "email": "roshencecplacement@gmail.com",
+        "password": "Rosh123@",
+        "id": 2,
+        "role": "user",
+        "addresses": [
+          {
+            "name": "Roshen Koshy",
+            "email": "roshankoshy123@gmail.com",
+            "phone": "7559044773",
+            "street": "aarumurikada",
+            "city": "kollam",
+            "state": "kerala",
+            "pinCode": "691501"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Roshen Koshy",
+        "email": "roshankoshy123@gmail.com",
+        "phone": "7559044773",
+        "street": "aarumurikada",
+        "city": "kollam",
+        "state": "kerala",
+        "pinCode": "691501"
+      },
+      "status": "delivered",
+      "id": 5
     }
   ]
 }

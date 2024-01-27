@@ -13,6 +13,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import {  Link, useNavigate } from 'react-router-dom';
 
 import {  Navigate } from 'react-router-dom';
+import { discountedPrice } from '../../app/constants';
 
 
 
@@ -22,7 +23,7 @@ const Cart = () => {
   const navigate=useNavigate()
   const items=useSelector(selectItems)
   console.log(items)
-  const totalAmount=items.reduce((amount,item)=>item.price*item.quantity +amount,0)
+  const totalAmount=items.reduce((amount,item)=> discountedPrice(item)*item.quantity +amount,0)
   const totalItems=items.reduce((total,item)=>item.quantity +total,0)
 
   const handleQuantity=(e,item)=>{
@@ -57,7 +58,7 @@ const Cart = () => {
                  <h3>
                    <a href={item.href}>{item.title}</a>
                  </h3>
-                 <p className="ml-4">${item.price}</p>
+                 <p className="ml-4">$ {discountedPrice(item)}</p>
                </div>
                <p className="mt-1 text-sm text-gray-500">{item.brand}</p>
              </div>
