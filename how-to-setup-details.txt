@@ -19,3 +19,51 @@ pattern:{
                   }
 
 to check whether the confirm password  we entered is same as  password in use hook website go to api then usehook() then register then scroll down we can see validate where this code is presnent validate: (value, formValues) => value === '1' here change 1 to      validate: (value, formValues) => value === formValues.password || "Password not matching"    where value is confirm password and formValues is with with value you want to compare it with that is here password  and the sentence after this symbol || is if it is not matching        
+
+
+// to add alert
+
+now to just to make the frontend more beautyful we can use alert by downloading 
+npm install --save react-alert react-alert-template-basic --force
+then after instaling paste the below given code in app.js
+
+import { positions, Provider } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
+const options = {
+  timeout: 5000,
+  position: positions.BOTTOM_CENTER
+};
+
+then in the function app inside at return staement add
+<Provider template={AlertTemplate} {...options}></Provider>
+
+then were we want to use this alert paste the below given code there 
+
+          alert.show("Oh look, an alert!"); we can use alert.show,.success,.error etc
+
+then in the same file import useAlert as import { useAlert } from "react-alert";
+then create  const alert=useAlert()     
+
+
+//to add spinner 
+
+to add spinner that is when the page time to load we show sipnner to add it forst open npm sipinner loader and sownload 
+npm install react-loader-spinner --force  
+
+then click on a link at right side there go to reasct spinner there we can see lot of spinner choose one and copy code of it 
+foe example 
+{status==="loading"?<Grid
+  visible={true}
+  height="80"
+  width="80"
+  color="rgb(79,70,229)"
+  ariaLabel="grid-loading"
+  radius="12.5"
+  wrapperStyle={{}}
+  wrapperClass="grid-wrapper"
+  />:null}
+
+  where status is all apislice.js there is status we check whether it is fullfiled or lading and according to it we can show spinner
+
+
+

@@ -38,6 +38,7 @@
         "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
         "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
       ]
+  
     },
     {
       "id": 3,
@@ -53,6 +54,7 @@
       "images": [
         "https://cdn.dummyjson.com/product-images/3/1.jpg"
       ]
+     
     },
     {
       "id": 4,
