@@ -1,0 +1,14 @@
+first type npm init
+then create index.js file
+then after that add
+"start":"node index.js",
+"dev":"nodemon index.js",
+commands insite script in package.json agter that to run we can just enter npm run devnpm
+
+(to know node current version just enter node -v)
+
+after that enter npm install express mongoose
+
+then start writing code in app.js
+
+to use cors we have to install it first npm i cors
