@@ -5,25 +5,25 @@ import { useForm } from 'react-hook-form';
 const UserProfile = () => {
   const {register,handleSubmit,reset,setValue,formState: { errors }} = useForm();
   const dispatch = useDispatch();
-  const user=useSelector(selectUserInfo)
+  const userInfo=useSelector(selectUserInfo)
   const [selectedEditIndex,setSelectedEditIndex]=useState(-1);
   const [showAddAddressForm,setShowAddAddressForm]=useState(false);
 
   const handleEdit=(addressUpdate,index)=>{
-    const newUser={...user,addresses:[...user.addresses]}//for shallow copy issue
+    const newUser={...userInfo,addresses:[...userInfo.addresses]}//for shallow copy issue
     newUser.addresses.splice(index,1,addressUpdate)
     dispatch(updateUserAsync(newUser))
     setSelectedEditIndex(-1)
   }
   const handleRemove=(e,index)=>{
-      const newUser={...user,addresses:[...user.addresses]}//for shallow copy issue
+      const newUser={...userInfo,addresses:[...userInfo.addresses]}//for shallow copy issue
       newUser.addresses.splice(index,1)
       dispatch(updateUserAsync(newUser))
   }
 
   const handleEditForm=(index)=>{
     setSelectedEditIndex(index)
-    const address=user.addresses[index]
+    const address=userInfo.addresses[index]
     setValue('name',address.name)
     setValue('email',address.email)
     setValue('street',address.street)
@@ -34,7 +34,7 @@ const UserProfile = () => {
   }
 
   const handleAdd=(address)=>{
-    const newUser={...user,addresses:[...user.addresses,address]}
+    const newUser={...userInfo,addresses:[...userInfo.addresses,address]}
     dispatch(updateUserAsync(newUser))
     setShowAddAddressForm(false)
   }
@@ -44,9 +44,9 @@ const UserProfile = () => {
         <div className="mt-12 bg-gray-100 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
 <div className=" border-t border-gray-200 px-4 py-6 sm:px-6">
-<h1 className="text-4xl font-bold tracking-tight text-gray-900 my-4">Name: {user.name?user.name:"New-User"}</h1>
-<h3 className="text-xl font-bold tracking-tight text-red-900 my-4">Email Address: {user.email}</h3>
-{user.role==="admin" && (<h3 className="text-xl font-bold tracking-tight text-red-900 my-4">Role: {user.role}</h3>)}
+<h1 className="text-4xl font-bold tracking-tight text-gray-900 my-4">Name: {userInfo.name?userInfo.name:"New-User"}</h1>
+<h3 className="text-xl font-bold tracking-tight text-red-900 my-4">Email Address: {userInfo.email}</h3>
+{userInfo.role==="admin" && (<h3 className="text-xl font-bold tracking-tight text-red-900 my-4">Role: {userInfo.role}</h3>)}
 </div>
                  
 
@@ -213,7 +213,7 @@ const UserProfile = () => {
             
           </form>:null}
    <p className="mt-0.5 text-sm text-gray-500">Your Address:</p>
-   {user.addresses.map((address,index)=>(
+   {userInfo.addresses.map((address,index)=>(
      <div>
        {selectedEditIndex===index ? <form className="bg-gray-100 px-5 mt-12 " noValidate onSubmit={handleSubmit((data)=>{
             handleEdit(data,index)

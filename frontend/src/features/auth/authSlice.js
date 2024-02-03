@@ -3,7 +3,7 @@ import { createUser,checkUser, signOut } from './authAPI';
 import { updateUser } from '../user/userAPI';
 
 const initialState = {
-  loggedInUser: null,
+  loggedInUser: null,//contaisn only id and role
   status: 'idle',
   error:null,
 };
@@ -33,13 +33,6 @@ export const checkUserAsync = createAsyncThunk(
 );
 
 // for checkoutpage to add to user
-export const updateUserAsync = createAsyncThunk(
-  'user/updateUser',
-  async (loginInfo) => {
-    const response = await updateUser(loginInfo);
-    return response.data;
-  }
-);
 
 export const signOutAsync = createAsyncThunk(
   'user/signOut',
@@ -74,13 +67,6 @@ export const authSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(checkUserAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
-        state.loggedInUser = action.payload;
-      })
-      .addCase(updateUserAsync.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(updateUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.loggedInUser = action.payload;
       })

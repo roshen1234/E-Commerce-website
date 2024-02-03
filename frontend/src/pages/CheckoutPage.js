@@ -10,7 +10,7 @@ import {
 } from '../features/cart/cartSlice';
 import { Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import {  updateUserAsync } from "../features/auth/authSlice";
+import {  updateUserAsync } from "../features/user/userSlice";
 import { createOrderAsync,selectCurrentOrder } from "../features/order/orderSlice";
 import { selectUserInfo } from "../features/user/userSlice";
 import { discountedPrice } from "../app/constants";

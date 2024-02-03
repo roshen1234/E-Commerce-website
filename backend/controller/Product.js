@@ -13,8 +13,8 @@ catch{
 }
 
 exports.fetchAllProducts=async(req,res)=>{
-   let query=Product.find({})
-   let totalProductsQuery=Product.find({})
+   let query=Product.find({deleted:{$ne:true}})
+   let totalProductsQuery=Product.find({deleted:{$ne:true}})
 
     if(req.query.category)
     {   
