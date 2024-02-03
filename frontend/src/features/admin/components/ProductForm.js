@@ -80,7 +80,7 @@ const ProductForm = () => {
               <h2 className="text-base font-semibold leading-7 text-gray-900">Add Product</h2>
 
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                {selectedProduct.deleted && <h2 className='text-red-500 sm:col-span-6'>This Product Is Deleted</h2>}
+                {selectedProduct && selectedProduct.deleted && <h2 className='text-red-500 sm:col-span-6'>This Product Is Deleted</h2>}
                 <div className="sm:col-span-6">
                   <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900">
                     Product Name
@@ -381,8 +381,10 @@ const ProductForm = () => {
             </button>
           </div>
         </form>
+        {selectedProduct && (
         <Modal title={`Delete ${selectedProduct.title}`} message="Are you Sure You Want To Delete This Product"
         dangerOption="Delete"cancelOption="Cancel" dangerAction={handleDelete} showModal={openModal} cancelAction={()=>setOpenModal(null)}></Modal>
+        )}
   </>
       )
     }
