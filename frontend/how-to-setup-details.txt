@@ -67,3 +67,5 @@ foe example
 
 when we clone a different repository then we have to enter npm install --force . This command will create a new folder node_modules and install all packages in package.json inside it. 
 
+rejectWithValue it is a function used add data directely to payload if the async function written is rejected it is shown in authSlice checkUserAsync
+
