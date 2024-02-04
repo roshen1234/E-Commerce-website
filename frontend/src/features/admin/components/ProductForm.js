@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
 import Modal from '../../common/Modal'
+import { useAlert } from 'react-alert'
 const ProductForm = () => {
     const brands = useSelector(selectBrands)
   const categories = useSelector(selectCategories)
@@ -13,6 +14,7 @@ const ProductForm = () => {
   const params=useParams()
   const selectedProduct=useSelector(selectProductById)
   const [openModal,setOpenModal]=useState(null)
+  const alert=useAlert()
   useEffect(()=>{
     if(params.id)
     {
@@ -66,10 +68,12 @@ const ProductForm = () => {
             { product.id=params.id;
               product.rating=selectedProduct.rating||0
               dispatch(updateProductAsync(product))
+              alert.success("Item Updated");
               reset()
             }
             else{
               dispatch(createProductAsync(product))
+              alert.success("Product Created");
               reset()
             }
            

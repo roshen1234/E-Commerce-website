@@ -98,7 +98,7 @@ const handleFilter=(e,section,option)=>{
 
   useEffect(()=>{
     const pagination={_page:page,_limit:ITEMS_PER_PAGE}
-    dispatch(fetchProductsByFilterAsync({filter,sort,pagination}))
+    dispatch(fetchProductsByFilterAsync({filter,sort,pagination,admin:true}))
     },[dispatch,filter,sort,page])
 
   useEffect(()=>{
@@ -472,6 +472,9 @@ function ProductGrid({products}){
               </div>
               {product.deleted && <div>
                 <p className='text-sm text-red-400'>Product Deleted</p>
+              </div>}
+              {product.stock<=0 && <div>
+                <p className='text-sm text-red-400'>Out Of Stock</p>
               </div>}
             </div>
             </Link>
