@@ -83,3 +83,12 @@ after this for each time we make change in frontend we have to make a new build 
 for stoping reloading we have made checkAuth api where it just returns the user id,we put this in app.js so app.js runs first so each time when it gets called the checkAuth runs and user will be present and since there is user it will not go to login page,this happens because once we cretaed a cookie by loging in it is stored it doesnot get lost untill another cookie is created,when we login again the current cookie get overrrided
 
 but the problem here is even when we reload from a different page we come back to product page because first it goes to login page then since it finds out there is user due to chechAuth api it navigate to product so to remove that we keep a checkUser in authSlice which at first is false and when user comes its true we put this in app.js for all routers so when it is false routing doesnot happen when it is true that is when user comes it become true and routing happens since when user comes there is no need to go to login page so it stay in the same page 
+
+//stripe payement setup 
+after setingup stripe payement in backend that is copying the server.js code and pasting it in backen now in frontend in the same page as server.js is present there is app.js we have to copy that and paste it in frontend we create new page stripe checkout we paste this when we click checkout if its cash then the order confirmation page gets opende but if it is card then stripe payment that is stripecheckout page opens before that we have to install 
+npm install --save @stripe/react-stripe-js @stripe/stripe-js
+in frontend 
+then for the stripe checkout page we need a checkout form so we create new page checkoutform page we can copy the code of it in the same wesite as before it is written checkoutform.js
+in stripeCheckout there is one more that is in return the styling given is app we just change name to Stripe and create Stripe .css file import it in stripeCheckout and in Stripe .css file we paste the code in the website there is app.css
+
+to test the stripe with a card number we have to enter 4000003560000008

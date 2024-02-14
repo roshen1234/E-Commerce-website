@@ -47,3 +47,31 @@ in index.js
 for stoping reloading we have made checkAuth api where it just returns the user id,we put this in app.js so app.js runs first so each time when it gets called the checkAuth runs and user will be present and since there is user it will not go to login page,this happens because once we cretaed a cookie by loging in it is stored it doesnot get lost untill another cookie is created,when we login again the current cookie get overrrided
 
 but the problem here is even when we reload from a different page we come back to product page because first it goes to login page then since it finds out there is user due to chechAuth api it navigate to product so to remove that we keep a checkUser in authSlice which at first is false and when user comes its true we put this in app.js for all routers so when it is false routing doesnot happen when it is true that is when user comes it become true and routing happens since when user comes there is no need to go to login page so it stay in the same page 
+
+//stripe payement setup 
+first we havto open react stripe website then there go down we can see adding payment option click that and on the next page select node and react then custamizable so that we can customize according to our wish then first to use it we have to install in backend  
+npm install --save stripe
+in that page copy the entire server.js code and paste in backend index.js
+
+wehook is used basically when the payement has become succefull or recieved in stripe it has to give information to our server(backend) for that we use webhook
+now to use webHook THERE IS TWO WAYS one is using the endpoint that we use for our actual project before that we have to test the webhook for that we use STRIPE CLI were they provides cases and triggers the webhook and we can see the response is correct or not after that when we want to use in our app we have to create endpoints and in that we can check  the payemnts made through our website whether it was successfull or not the message is pased to backed from stripe.Now to use STRIPE CLE for testing we have to first go to developer in stripe then in there test in a local enviorment(since we are testing in local devise that is our device) and sice we havnt it used till now click download cli then dowload for window version we have download in comad line and then to use it is visual code we have to do some thing both for instalation and using in vs code we have vedio 
+https://www.youtube.com/watch?v=jJu8vQH7hLY
+https://www.youtube.com/watch?v=ZOhR9ocSvLE
+then after creating we have to enter stripe login then we get a link and there we activate cli now we can use stripe cli 
+after that install
+stripe listen --forward-to localhost:8080/webhook
+as given in that page 
+then copy the code in the right side of the page and paste it in the index.js at top otherwise error will come 
+after that we have to enter 
+stripe trigger payment_intent.succeeded
+
+{we can keep all our secreat keys in .env fileofr that first we have install
+npm install dotenv 
+then import 
+require('dotenv').config()
+then we can get each name mentioned there as process.env.<Name> example
+process.env.END_POINT_SECRET}
+
+now continuing webHook 
+
+
