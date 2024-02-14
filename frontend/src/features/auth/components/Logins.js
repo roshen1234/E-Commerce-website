@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  checkUserAsync, selectError, selectLoggedInUser
+   loginUserAsync, selectError, selectLoggedInUser
 
 } from '../authSlice';
 import { Link, Navigate } from 'react-router-dom';
@@ -31,7 +31,7 @@ const Logins = () => {
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form noValidate className="space-y-6" onSubmit={handleSubmit((data)=>{
-            dispatch(checkUserAsync({email:data.email,password:data.password}))
+            dispatch(loginUserAsync({email:data.email,password:data.password}))
             console.log(data);
           })}>
             <div>

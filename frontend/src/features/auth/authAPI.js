@@ -1,4 +1,3 @@
-
 export function createUser(userData) {
   return new Promise(async(resolve) =>{
     const response=await fetch ('http://localhost:8080/auth/signup',{
@@ -6,13 +5,14 @@ export function createUser(userData) {
       body:JSON.stringify(userData),
       headers:{'content-type':'application/json'}
     })
+ 
     const data=await response.json()
     resolve({data})
   }
     );
 }
 
-export function checkUser(loginInfo) {
+export function loginUser(loginInfo) {
   return new Promise(async(resolve,reject) =>{
     try {
       const response=await fetch ('http://localhost:8080/auth/login',{
@@ -22,8 +22,10 @@ export function checkUser(loginInfo) {
     })
     if(response.ok)
     {
+  
       const data=await response.json()
-        resolve({data})
+      
+      resolve({data})
     }
     else{
       const error=await response.json()
@@ -38,6 +40,29 @@ export function checkUser(loginInfo) {
     );
 }
 
+export function checkAuth() {
+  return new Promise(async(resolve,reject) =>{
+    try {
+      const response=await fetch ('http://localhost:8080/auth/check')
+    if(response.ok)
+    {
+  
+      const data=await response.json()
+      
+      resolve({data})
+    }
+    else{
+      const error=await response.json()
+      reject(error)
+    }
+    } catch (error) {
+      reject(error)
+    }
+    
+      
+  }
+    );
+}
 
 export function signOut(UserId) {
   return new Promise(async(resolve) =>{

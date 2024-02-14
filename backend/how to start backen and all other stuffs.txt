@@ -12,3 +12,38 @@ after that enter npm install express mongoose
 then start writing code in app.js
 
 to use cors we have to install it first npm i cors
+
+//STORING JWT TOKEN IN setCookie
+after doing jwt authenticarion we get the token then to store the token, after jwt sign that is after the cookie is made we stre it in set cookie presnt in header for that after sign we use the command 
+res.cookie('jwt', token, { expires: new Date(Date.now() + 3600000), httpOnly: true })
+we can find this code in express api refernce,response, res.cookie()
+after this backend has done it work now we have take this code in frontend and sent with each request
+
+//STORING IN COOKIE
+when we do the above one in networks in login under header we can see the jwt token but we need it in application then cookie it is not there because of cors problem so we make the fronend and backend one and run both in backendport to bring it there we have to first make build for frontend that is npm run build and then paste the build in backend then in backend in index.js we have to paste the code 
+server.use(express.static('build'))
+after this inside application in cookie we will find our cookie after that under each api request under cookie we will have our jwt token
+
+after this for each time we make change in frontend we have to make a new build and paste it in backend again
+
+//MIDDLEWARE CODE TO TAKE THE COOKIE AND USE IT TO MAKE TOKEN
+now each api request has this cookie and inside it there is jwt token but for each api request to use it we have to put the below given code in fetchuser middleware 
+
+let token=null
+   if(req && req.cookies )////
+   {
+    try {
+        token=req.cookies['jwt']/////
+        const decoded=jwt.verify(token,Secreat_Key)
+        req.user=decoded.id
+        next()
+the /// code is used to store the jwt token that is passed by frontend as cookie inside token 
+and to use req.cookie we have to install  npm install cookie-parser and put 
+const cookieParser = require('cookie-parser');
+server.use(cookieParser())
+in index.js
+
+//RELOADING
+for stoping reloading we have made checkAuth api where it just returns the user id,we put this in app.js so app.js runs first so each time when it gets called the checkAuth runs and user will be present and since there is user it will not go to login page,this happens because once we cretaed a cookie by loging in it is stored it doesnot get lost untill another cookie is created,when we login again the current cookie get overrrided
+
+but the problem here is even when we reload from a different page we come back to product page because first it goes to login page then since it finds out there is user due to chechAuth api it navigate to product so to remove that we keep a checkUser in authSlice which at first is false and when user comes its true we put this in app.js for all routers so when it is false routing doesnot happen when it is true that is when user comes it become true and routing happens since when user comes there is no need to go to login page so it stay in the same page 

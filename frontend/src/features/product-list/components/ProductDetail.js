@@ -48,7 +48,7 @@ const ProductDetail = () => {
    const status=useSelector(selectProductListStatus)
    const dispatch=useDispatch();
   const params=useParams();
-const user=useSelector(selectLoggedInUser)
+
 
 const alert=useAlert()
 
@@ -56,7 +56,7 @@ const alert=useAlert()
     e.preventDefault();
     if(items.findIndex(item=>item.product.id===product.id)<0)
     {
-      const newItem={product:product.id,quantity:1,user:user.id}
+      const newItem={product:product.id,quantity:1}
        dispatch(addToCartAsync(newItem))
        alert.success("Item added to cart");
     }else{

@@ -1,13 +1,16 @@
 first we have use npx create-react-app <name> to create a react app
 
+//TO GET REDUX TOOLKIT IN FULL FORMAT 
 then to get redux tookit template we have to type npx degit reduxjs/redux-templates/packages/cra-template-redux react-app in a new terminal by opening a new vs code 
 
 then from that copy the full content inside template/src and paste it inside our src in the react app then  we get the redux tempelate 
 
+//USING A FAKE BACKEND TO CHECK FRONTEND SINCE WE HAVE NOT MADE BACKEND TILL NOW 
 first we are setting up frontend first then only backend so to test frontend we use a site dummy.json where we get a lot of data in json format we have to create data.json file in react app and paste the json code there 
 
 then we have to install npm i -g json-server this will check the content in the data.json(for each item present in the data.json it makes a api ) that we have created and gives us a port so that we can test our frontend we have to enter the code  json-server --watch ./src/data.json --port 8080 
 
+//USEHOOK TO MAKE THE ENTERED DATA IN A FORM INTO A FORM AND SEND TO BACKEND 
 then we have to go to react form hook website  use react form hook by useHook() an we have to download as "npm install react-hook-form"  this basically is for when we create a user we enter the username password and confirm password and we sent this to the api to put it in the DB so for that we can put this all data in a form by just using this and this form content is send to backend ie to api so basically we can easily covert the data entered by the user into form
 
 then if we want to validate the contents that we enter as email or password etc like email  should be of type email@mail.com like that then we have validator option in use hook we can click that or go to regexer where we will  get all type validators for email passwords etc to use it we have to give it as 
@@ -21,8 +24,7 @@ pattern:{
 to check whether the confirm password  we entered is same as  password in use hook website go to api then usehook() then register then scroll down we can see validate where this code is presnent validate: (value, formValues) => value === '1' here change 1 to      validate: (value, formValues) => value === formValues.password || "Password not matching"    where value is confirm password and formValues is with with value you want to compare it with that is here password  and the sentence after this symbol || is if it is not matching        
 
 
-// to add alert
-
+// TO ADD ALERT
 now to just to make the frontend more beautyful we can use alert by downloading 
 npm install --save react-alert react-alert-template-basic --force
 then after instaling paste the below given code in app.js
@@ -45,8 +47,7 @@ then in the same file import useAlert as import { useAlert } from "react-alert";
 then create  const alert=useAlert()     
 
 
-//to add spinner 
-
+//TO ADD SPINNER
 to add spinner that is when the page time to load we show sipnner to add it forst open npm sipinner loader and sownload 
 npm install react-loader-spinner --force  
 
@@ -63,9 +64,22 @@ foe example
   wrapperClass="grid-wrapper"
   />:null}
 
-  where status is all apislice.js there is status we check whether it is fullfiled or lading and according to it we can show spinner
+  where status is in apislice.js there is status we check whether it is fullfiled or loading and according to it we can show spinner
 
+//CLONING FROM DIFFERENT REPO
 when we clone a different repository then we have to enter npm install --force . This command will create a new folder node_modules and install all packages in package.json inside it. 
 
-rejectWithValue it is a function used add data directely to payload if the async function written is rejected it is shown in authSlice checkUserAsync
+//REJECTUSERWITHVALUE
+rejectWithValue it is a function used to add data directely to payload if the async function written is rejected it is shown in authSlice checkUserAsync
 
+//COOKIE CREATION USING JWT
+after we have stored our jwt token in set cookie in header that is in networks in login under header we can see the jwt token but we need it in application then cookie it is not there because of cors problem so we make the fronend and backend one and run both in backendport to bring it there we have to first make build for frontend that is npm run build and then paste the build in backend then in backend in index.js we have to paste the code 
+server.use(express.static('build'))
+after this inside application in cookie we will find our cookie after that under each api request under cookie we will have our jwt token
+
+after this for each time we make change in frontend we have to make a new build and paste it in backend again
+
+//RELOADING
+for stoping reloading we have made checkAuth api where it just returns the user id,we put this in app.js so app.js runs first so each time when it gets called the checkAuth runs and user will be present and since there is user it will not go to login page,this happens because once we cretaed a cookie by loging in it is stored it doesnot get lost untill another cookie is created,when we login again the current cookie get overrrided
+
+but the problem here is even when we reload from a different page we come back to product page because first it goes to login page then since it finds out there is user due to chechAuth api it navigate to product so to remove that we keep a checkUser in authSlice which at first is false and when user comes its true we put this in app.js for all routers so when it is false routing doesnot happen when it is true that is when user comes it become true and routing happens since when user comes there is no need to go to login page so it stay in the same page 

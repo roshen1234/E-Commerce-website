@@ -1,6 +1,5 @@
 const { createProduct, fetchAllProducts, fetchProductId, updateProduct } = require("../controller/Product")
 const express=require('express');
-
 router=express.Router()
 
 router.post('/',createProduct)

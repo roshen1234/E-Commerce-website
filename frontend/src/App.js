@@ -20,7 +20,7 @@ import Protected from './features/auth/components/Protected';
 import {useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchItemsByUserIdAsync } from './features/cart/cartSlice';
-import { selectLoggedInUser } from './features/auth/authSlice';
+import { checkAuthAsync, selectLoggedInUser, selectUserChecked } from './features/auth/authSlice';
 import OrderSuccessPage from './pages/orderSuccessPage';
 import UserOrderPage from './pages/UserOrderPage';
 import UserProfilePage from './pages/UserProfilePage';
@@ -117,20 +117,25 @@ function App() {
 
   const dispatch=useDispatch()
   const user=useSelector(selectLoggedInUser);
+  const userChecked=useSelector(selectUserChecked)
+
+  useEffect(()=>{
+   dispatch(checkAuthAsync())
+  },[])
   useEffect(()=>{
     if(user)
     {
-      dispatch(fetchItemsByUserIdAsync(user.id));
-      dispatch(fetchLoggedInUserAsync(user.id))
+      dispatch(fetchItemsByUserIdAsync());
+      dispatch(fetchLoggedInUserAsync())
     }
 },[dispatch,user])
   
   return (
 
     <div className="">
-      <Provider template={AlertTemplate} {...options}>
+      {userChecked && <Provider template={AlertTemplate} {...options}>
        <RouterProvider router={router} />
-       </Provider>
+       </Provider>}
     </div>
   );
 }

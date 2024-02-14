@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   
   deleteItemFromCartAsync,
+  selectCartLoaded,
   selectCartStatus,
   selectItems,
   updateCartAsync,
@@ -30,7 +31,7 @@ const Cart = () => {
   const [openModal,setOpenModal]=useState(null)
   const totalAmount=items.reduce((amount,item)=> discountedPrice(item.product)*item.quantity +amount,0)
   const totalItems=items.reduce((total,item)=>item.quantity +total,0)
-
+  const cartLoaded=useSelector(selectCartLoaded)
   const handleQuantity=(e,item)=>{
     dispatch(updateCartAsync({id:item.id,quantity: +e.target.value}))
   }
@@ -40,7 +41,7 @@ const Cart = () => {
   }
   return (
   <>
- {!items.length &&<Navigate to={'/'} replace={true}></Navigate>}
+ {!items.length && cartLoaded &&<Navigate to={'/'} replace={true}></Navigate>}
 
 
 <div className="mt-12 bg-gray-100 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
