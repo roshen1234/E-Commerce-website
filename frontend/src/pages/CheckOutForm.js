@@ -6,12 +6,13 @@ import {
 } from "@stripe/react-stripe-js";
 import { useSelector } from 'react-redux';
 import { selectCurrentOrder } from "../features/order/orderSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
   const currentOrder = useSelector(selectCurrentOrder);
-  
+  const navigate=  useNavigate()
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -63,7 +64,8 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `http://localhost:8080/order-success/${currentOrder.id}`,
+        return_url: `/order-success/${currentOrder.id}`,
+        // here we have to give the url but since we are not hosting when we enter https:8080/order-success/${currentOrder.id} insted of going to frontend it goes to backend so what we have done is that if payment is succesfull then it will enter here, we have entered wrong return url so  the retuen url will be false so in {error} there error message will come so if error comes then we navigate(`/order-success/${currentOrder.id}`) this not the write way but sice we are not hosting this is the only way because return url calls backend directly but the problem here is we will not get succeded in stripe because it will tell confirmParams is wrong because return_url is wrong  
       },
     });
 
@@ -74,7 +76,11 @@ export default function CheckoutForm() {
     // redirected to the `return_url`.
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message);
-    } else {
+    } else if(error.type==="invalid_request_error") {
+      navigate(`/order-success/${currentOrder.id}`)
+      // this else is just for navigating since we have found out that all time if the payement is succesfull and return url is wrong because we have given it wrong this specific error will come so at that time we navigate to orde-sucess page
+    }
+    else{
       setMessage("An unexpected error occurred."+error.message+error.type);
     }
 
